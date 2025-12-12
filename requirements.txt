@@ -189,8 +189,6 @@ python-slugify==8.0.4
 pythonnet==3.0.5
 pytz==2025.2
 pywebview==6.0
-pywin32==310
-pywin32-ctypes==0.2.3
 pywinpty==2.0.15
 PyYAML==6.0.2
 pyzbar==0.1.9
