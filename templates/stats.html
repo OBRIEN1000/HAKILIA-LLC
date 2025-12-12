@@ -1,0 +1,234 @@
+{% extends "base.html" %}
+{% block title %}Statistiques avancées du Blog{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/wordcloud@1.1.0/src/wordcloud2.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const chartData = {
+      category: {
+        ctx: document.getElementById('categoryChart').getContext('2d'),
+        config: {
+          type: 'bar',
+          data: {
+            labels: [{% for cat, count in posts_by_category %}"{{ cat }}",{% endfor %}],
+            datasets: [{
+              label: 'Articles par Catégorie',
+              data: [{% for cat, count in posts_by_category %}{{ count }},{% endfor %}],
+              backgroundColor: 'rgba(99,102,241,0.6)',
+              borderColor: 'rgba(99,102,241,1)',
+              borderWidth: 1,
+              borderRadius: 4,
+              barThickness: 30
+            }]
+          },
+          options: { responsive: true, scales: { y: { beginAtZero: true } } }
+        }
+      },
+      forecast: {
+        ctx: document.getElementById('forecastViews').getContext('2d'),
+        config: {
+          type: 'line',
+          data: {
+            labels: [{% for post in view_trend %}"{{ post.title }}",{% endfor %}],
+            datasets: [{
+              label: 'Prévision des vues',
+              data: [{% for post in view_trend %}{{ post.views }},{% endfor %}],
+              borderColor: 'rgba(59,130,246,1)',
+              fill: false,
+              tension: 0.3
+            }]
+          }
+        }
+      },
+      topViews: {
+        ctx: document.getElementById('topViews').getContext('2d'),
+        config: {
+          type: 'bar',
+          data: {
+            labels: [{% for post in most_viewed %}"{{ post.title }}",{% endfor %}],
+            datasets: [{
+              label: 'Top Vues',
+              data: [{% for post in most_viewed %}{{ post.views }},{% endfor %}],
+              backgroundColor: 'rgba(34,197,94,0.7)'
+            }]
+          },
+          options: { indexAxis: 'y' }
+        }
+      },
+      topLikes: {
+        ctx: document.getElementById('topLikes').getContext('2d'),
+        config: {
+          type: 'bar',
+          data: {
+            labels: [{% for post in most_liked %}"{{ post.title }}",{% endfor %}],
+            datasets: [{
+              label: 'Top Likes',
+              data: [{% for post in most_liked %}{{ post.likes }},{% endfor %}],
+              backgroundColor: 'rgba(236,72,153,0.7)'
+            }]
+          },
+          options: { indexAxis: 'y' }
+        }
+      },
+      topComments: {
+        ctx: document.getElementById('topComments').getContext('2d'),
+        config: {
+          type: 'bar',
+          data: {
+            labels: [{% for post, count in most_commented %}"{{ post.title }}",{% endfor %}],
+            datasets: [{
+              label: 'Top Commentaires',
+              data: [{% for post, count in most_commented %}{{ count }},{% endfor %}],
+              backgroundColor: 'rgba(139,92,246,0.7)'
+            }]
+          },
+          options: { indexAxis: 'y' }
+        }
+      }
+    };
+
+    for (let key in chartData) {
+      new Chart(chartData[key].ctx, chartData[key].config);
+    }
+
+    function kMeans(data, k = 3, maxIter = 10) {
+      const centroids = data.slice(0, k).map(p => [...p]);
+      let assignments = [];
+
+      for (let iter = 0; iter < maxIter; iter++) {
+        assignments = data.map(p => {
+          const dists = centroids.map(c => Math.hypot(p[0] - c[0], p[1] - c[1]));
+          return dists.indexOf(Math.min(...dists));
+        });
+
+        for (let j = 0; j < k; j++) {
+          const assigned = data.filter((_, i) => assignments[i] === j);
+          if (assigned.length) {
+            centroids[j] = [
+              assigned.reduce((sum, p) => sum + p[0], 0) / assigned.length,
+              assigned.reduce((sum, p) => sum + p[1], 0) / assigned.length
+            ];
+          }
+        }
+      }
+      return { centroids, assignments };
+    }
+
+    const rawData = [
+      {% for post in most_viewed %}[{{ post.views }}, {{ post.likes }}],{% endfor %}
+    ];
+    const titles = [
+      {% for post in most_viewed %}"{{ post.title }}",{% endfor %}
+    ];
+
+    const { centroids, assignments } = kMeans(rawData, 3);
+    const colors = ['#3b82f6', '#f59e0b', '#10b981'];
+    const scatterData = [0, 1, 2].map(clusterIndex => ({
+      label: `Cluster ${clusterIndex + 1}`,
+      data: rawData.map((p, i) => assignments[i] === clusterIndex ? { x: p[0], y: p[1], title: titles[i] } : null).filter(Boolean),
+      backgroundColor: colors[clusterIndex]
+    }));
+
+    new Chart(document.getElementById('kmeansChart').getContext('2d'), {
+      type: 'scatter',
+      data: { datasets: scatterData },
+      options: {
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: ctx => `${ctx.raw.title} → vues: ${ctx.raw.x}, likes: ${ctx.raw.y}`
+            }
+          }
+        },
+        scales: {
+          x: { title: { display: true, text: 'Vues' } },
+          y: { title: { display: true, text: 'Likes' } }
+        }
+      }
+    });
+
+    const interpret = c => {
+      if (c[0] < 6 && c[1] < 10) return '🔹 Peu vus et peu likés';
+      if (c[0] > 10 && c[1] > 40) return '⭐ Très aimés, sous-exposés';
+      return '🔥 Moyennement vus, appréciés';
+    };
+    let interpretation = centroids.map((c, i) => `Cluster ${i + 1} → vues moy.: ${c[0].toFixed(1)}, likes moy.: ${c[1].toFixed(1)} → ${interpret(c)}`).join('\n');
+    document.getElementById('kmeansInterpretation').innerText = interpretation;
+
+    // Word cloud
+    const words = titles.flatMap(t => t.toLowerCase().split(/\s+/));
+    const counts = words.reduce((a, w) => {
+      w = w.replace(/[^\w]/g, ''); if (w.length > 3) a[w] = (a[w] || 0) + 1; return a;
+    }, {});
+    WordCloud(document.getElementById('wordcloud'), { list: Object.entries(counts), gridSize: 100, weightFactor: 5 });
+
+    // Export CSV
+    document.getElementById('exportCSV').addEventListener('click', () => {
+      let csv = 'Titre,Vues,Likes\n';
+      rawData.forEach((p, i) => { csv += `"${titles[i]}",${p[0]},${p[1]}\n`; });
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+      saveAs(blob, 'blog_stats.csv');
+    });
+  });
+</script>
+{% endblock %}
+
+{% block content %}
+<header class="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-6 rounded-lg shadow-lg mb-6">
+  <h1 class="text-3xl font-bold">Statistiques Avancées du Blog</h1>
+  <a href="{{ url_for('dashboard') }}" class="bg-white text-blue-600 px-4 py-2 rounded hover:bg-gray-100 mt-3 inline-block">← Retour</a>
+</header>
+
+<section class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+  {% for label, value, color in [
+    ('Articles', total_posts, 'text-blue-500'),
+    ('Vues', total_views, 'text-green-500'),
+    ('Likes', total_likes, 'text-pink-500'),
+    ('Commentaires', total_comments, 'text-purple-500')
+  ] %}
+  <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+    <h2 class="text-lg font-semibold">{{ label }}</h2>
+    <p class="text-3xl font-bold {{ color }}">{{ value }}</p>
+  </div>
+  {% endfor %}
+</section>
+
+<section class="mb-6">
+  <button id="exportCSV" class="bg-blue-600 text-white px-4 py-2 rounded shadow hover:bg-blue-700">📥 Export CSV</button>
+</section>
+
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+  <div class="bg-white dark:bg-gray-800 p-4 rounded shadow">
+    <h2 class="text-xl font-semibold mb-2">Articles par Catégorie</h2>
+    <canvas id="categoryChart" height="200"></canvas>
+  </div>
+  <div class="bg-white dark:bg-gray-800 p-4 rounded shadow">
+    <h2 class="text-xl font-semibold mb-2">Prévision de la Tendance des Vues</h2>
+    <canvas id="forecastViews" height="200"></canvas>
+  </div>
+  <div class="bg-white dark:bg-gray-800 p-4 rounded shadow">
+    <h2 class="text-xl font-semibold mb-2">Top Vues</h2>
+    <canvas id="topViews" height="200"></canvas>
+  </div>
+  <div class="bg-white dark:bg-gray-800 p-4 rounded shadow">
+    <h2 class="text-xl font-semibold mb-2">Top Likes</h2>
+    <canvas id="topLikes" height="200"></canvas>
+  </div>
+  <div class="bg-white dark:bg-gray-800 p-4 rounded shadow">
+    <h2 class="text-xl font-semibold mb-2">Top Commentaires</h2>
+    <canvas id="topComments" height="200"></canvas>
+  </div>
+  <div class="bg-white dark:bg-gray-800 p-4 rounded shadow lg:col-span-2">
+    <h2 class="text-xl font-semibold mb-2">Profilage K-means des Articles</h2>
+    <canvas id="kmeansChart" height="250"></canvas>
+    <pre id="kmeansInterpretation" class="mt-3 bg-gray-900 text-white p-3 rounded text-sm whitespace-pre-wrap"></pre>
+  </div>
+  <div class="bg-white dark:bg-gray-800 p-4 rounded shadow lg:col-span-2">
+    <h2 class="text-xl font-semibold mb-2">Nuage des mots fréquents</h2>
+    <div id="wordcloud" class="w-full h-48"></div>
+  </div>
+</section>
+{% endblock %}

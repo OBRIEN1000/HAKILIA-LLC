@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Connexion{% endblock %}
+{% block content %}
+    <div class="max-w-md mx-auto bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg mt-20 animate-fade-in">
+        <h1 class="text-3xl font-bold text-center mb-6">Connexion Admin</h1>
+        <form action="{{url_for('login')}}" method="POST" class="space-y-4">
+            {{form.hidden_tag()}}
+            <div>
+                {{ form.username.label(class="block text-sm font-medium mb-1") }}
+                {{ form.username(class="w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600") }}
+                {% if form.username.errors %}
+                    <p class="text-red-500 text-sm mt-1">{{ form.username.errors[0] }}</p>
+                {% endif %}
+            </div>
+
+             <div>
+                {{ form.password.label(class="block text-sm font-medium mb-1") }}
+                {{ form.password(class="w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600") }}
+                {% if form.password.errors %}
+                    <p class="text-red-500 text-sm mt-1">{{ form.password.errors[0] }}</p>
+                {% endif %}
+            </div>
+
+            <div>
+                {{ form.submit(class="w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700 transition") }}
+            </div>
+        </form>
+    </div>
+{% endblock %}

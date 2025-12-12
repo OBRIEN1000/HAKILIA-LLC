@@ -1,0 +1,279 @@
+:root {
+            --bg-color: #0B0F19; /* Deep Navy */
+            --surface-color: #1A1D29;
+            --text-color: #E8E8E8;
+            --text-muted-color: #7F8C9B;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --font-heading: 'Exo 2', sans-serif;
+            --font-body: 'Roboto', sans-serif;
+            --prism-gradient: linear-gradient(90deg, #00FFFF, #FF00FF, #FFFF00);
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@600;700&family=Roboto:wght@300;400&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .background-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            line-height: 1.2;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        h1 { font-size: 4.5rem; }
+        h2 { font-size: 3rem; }
+        h3 { font-size: 1.25rem; }
+
+        p {
+            color: var(--text-muted-color);
+            margin-bottom: 1rem;
+            max-width: 60ch;
+        }
+        
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .section-title h2 {
+            margin-bottom: 1rem;
+        }
+
+        /* --- Header --- */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        .header.scrolled {
+            background: rgba(11, 15, 25, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+        }
+        .logo span {
+            background: var(--prism-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        .hero-content {
+            max-width: 750px;
+        }
+        .hero-content h1 {
+            margin-bottom: 1.5rem;
+        }
+        .hero-content p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        .btn-primary {
+            padding: 14px 32px;
+            border: 1px solid transparent;
+            background: var(--prism-gradient);
+            background-size: 200% 100%;
+            color: #000;
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 5px;
+            transition: background-position 0.4s ease;
+        }
+        .btn-primary:hover {
+            background-position: 100% 0;
+        }
+
+        /* --- Services Section --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .service-module {
+            background: rgba(26, 29, 41, 0.5);
+            border: 1px solid var(--border-color);
+            padding: 2.5rem 2rem;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        .service-module:hover {
+            transform: translateY(-10px);
+        }
+        .service-module::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: var(--prism-gradient);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+        .service-module:hover::before {
+            opacity: 0.1;
+        }
+        .service-module h3 {
+            margin-bottom: 1rem;
+            color: #fff;
+            transition: transform 0.3s ease;
+        }
+        .service-module:hover h3 {
+            animation: glitch 0.3s linear;
+        }
+        @keyframes glitch {
+            0%, 100% { transform: translate(0, 0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+        }
+        .module-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            background: var(--prism-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+
+        /* --- Tech Stack Section --- */
+        #tech {
+            background-color: var(--surface-color);
+            padding: 80px 0;
+        }
+        .tech-marquee {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        .tech-marquee::before, .tech-marquee::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 100px;
+            height: 100%;
+            z-index: 2;
+        }
+        .tech-marquee::before {
+            left: 0;
+            background: linear-gradient(to right, var(--surface-color), transparent);
+        }
+        .tech-marquee::after {
+            right: 0;
+            background: linear-gradient(to left, var(--surface-color), transparent);
+        }
+        .tech-marquee-inner {
+            display: flex;
+            width: fit-content;
+            animation: scroll 60s linear infinite;
+        }
+        .tech-logo {
+            height: 50px;
+            margin: 0 40px;
+            filter: grayscale(100%) brightness(1.5);
+            opacity: 0.8;
+            transition: filter 0.3s ease, opacity 0.3s ease;
+        }
+        .tech-marquee-inner:hover .tech-logo {
+            filter: grayscale(0%) brightness(1);
+            opacity: 1;
+        }
+        @keyframes scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* --- CTA Section --- */
+        .cta-section {
+            text-align: center;
+        }
+        .cta-section h2 {
+            max-width: 700px;
+            margin: 0 auto 2rem auto;
+        }
+
+        /* --- Footer --- */
+        .footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+        .footer p {
+            color: var(--text-muted-color);
+            margin: 0;
+        }
+        
+        /* --- Animation --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }

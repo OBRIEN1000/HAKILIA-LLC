@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAKILIA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudfare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+</head>
+<body>
+    <body>
+        <header>
+            <img src="{{url_for('static', filename='img/logo.jpg')}}" alt="Logo Hakilia" class="logo-round">
+        </header>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="#" class="logo"><span><i class="fas fa-code"></i></span>HAKILIA</a>
+        <div class="nav-links">
+            <a href="#accueil">Accueil</a>
+            <a href="{{url_for('Hakilia_Studio')}}">Hakilia Studio</a>
+            <a href="{{url_for('Hakilia_Web')}}">Hakilia WebLab</a>
+            <a href="{{url_for('Hakilia_Data')}}">Hakilia Data Analyse</a>
+            <a href="{{url_for('Hakilia_academ')}}">Hakilia Academy</a>
+            <a href="{{url_for('Hakilia_blog')}}">Hakilia blog</a>
+        </div>
+        <a href="#contact" class="cta-btn">Demander un service</a>
+        <div class="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+    
+    <!-- Menu Mobile -->
+    <div class="mobile-nav">
+        <div class="close-menu"><i class="fas fa-times"></i></div>
+            <a href="#accueil">Accueil</a>
+            <a href="{{url_for('Hakilia_Studio')}}">Hakilia Studio</a>
+            <a href="{{url_for('Hakilia_Web')}}">Hakilia WebLab</a>
+            <a href="{{url_for('Hakilia_Data')}}">Hakilia Data Analyse</a>
+            <a href="{{url_for('Hakilia_academ')}}">Hakilia Academy</a>
+            <a href="{{url_for('Hakilia_blog')}}">Hakilia blog</a>
+        </div>
+    <div class="overlay"></div>
+    
+    <!-- Hero Section -->
+    <section class="hero" id="accueil">
+        <div class="particles" id="particles"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Innovation par la <span>donnée, le Web et l'intelligence Artificielle</span> pour l'Entreprise de Demain</h1>
+            <p class="hero-subtitle">Nous accompagnons les entreprises, les chercheurs , les etudiants dans leurs projets digitaux et scientifiques , avec rigueur et créativité:.</p>
+            <div class="hero-buttons">
+                <a href="#services" class="cta-btn">Découvrir nos services</a>
+                <a href="#contact" class="secondary-btn">Nous contacter</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="features" id="services">
+        <div class="section-title">
+            <h2>Nos services d'excellence</h2>
+            <p>Découvrez comment nous pouvons transformer votre vision en solutions technologiques concrètes et performantes</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="/static/img/AI.jfif" alt="Intelligence-artificielle">
+                </div>
+                <h3>intelligence Artificielle</h3>
+                <p>Solutions d'IA et d'apprentissage automatique pour automatiser les processus et optimiser les performances.</p>
+                <a href="#" class="feature-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="/static/img/OIP (2).webp" alt="Application-Mobile">
+                </div>
+                <h3>Applications Mobiles</h3>
+                <p>Applications natives et hybrides pour iOS et Android, conçues pour optimiser l'expérience utilisateur.</p>
+                <a href="#" class="feature-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="/static/img/devWeb.jfif" alt="Developpement-Web">
+                </div>
+                <h3>Developpement Web</h3>
+                <p>Sites vitrines, e-commerces et applications web sur mesure avec une expérience utilisateur exceptionnelle.</p>
+                <a href="#" class="feature-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="/static/img/img2.jfif" alt="Data-Analysis">
+                </div>
+                <h3>Analyse Des Données</h3>
+                <p>Analyse de données et tableaux de bord pour prendre des décisions éclairées basées sur des informations précises.</p>
+                <a href="#" class="feature-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                   <img src="/static/img/img1.jfif" alt="Studio-Prod"> 
+                </div>
+                <h3>Montage Video</h3>
+                <p>Obtenez une nouvelle experience en montage video en combinant la puissant des IA et l'expertise des nos ingenieurs en production vidéo</p>
+                <a href="#" class="feature-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="/static/img/formation1.jfif" alt="Formation">
+                </div>
+                <h3>Hakilia Academie</h3>
+                <p>Formation de qualité sur les technologies web, mobile et en intelligence artificielle avec certification</p>
+                <a href="#" class="feature-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+
+    </section>
+    
+    <section class="projects" id="projects">
+        <div class="container">
+            <h2 class="section-title">Nos Réalisations</h2>
+             <div class="projects-grid">
+                <div class="project-card">
+                    <img src="/static/img/OIP.webp" alt="Application Mobile" class="project-img">
+                    <div class="project-content">
+                        <h3>Application Mobile FinTech</h3>
+                        <p>Une application de gestion financière intuitive permettant aux utilisateurs de suivre leurs dépenses et d'optimiser leur budget.</p>
+                        <div class="project-tags">
+                            <span class="tag">React Native</span>
+                            <span class="tag">API</span>
+                            <span class="tag">Finance</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="/static/img/ecom.webp"alt="Plateforme E-commerce" class="project-img">
+                    <div class="project-content">
+                        <h3>Plateforme E-commerce</h3>
+                        <p>Une boutique en ligne complète avec paiement sécurisé, gestion des stocks et interface d'administration sur mesure.</p>
+                        <div class="project-tags">
+                            <span class="tag">Vue.js</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">E-commerce</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="/static/img/p9.webp" alt="Dashboard Analytics" class="project-img">
+                    <div class="project-content">
+                        <h3>Dashboard Analytics</h3>
+                        <p>Un tableau de bord interactif permettant de visualiser et d'analyser les données clés de performance en temps réel.</p>
+                        <div class="project-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">D3.js</span>
+                            <span class="tag">Data</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="/static/img/p7.webp" alt="Système IoT" class="project-img">
+                    <div class="project-content">
+                        <h3>Système IoT Smart Home</h3>
+                        <p>Une solution complète de maison intelligente avec contrôle vocal, automatisations et suivi de la consommation énergétique.</p>
+                        <div class="project-tags">
+                            <span class="tag">IoT</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">AI</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="/static/img/Formation.jfif" alt="App Éducative" class="project-img">
+                    <div class="project-content">
+                        <h3>Application Éducative</h3>
+                        <p>Plateforme d'apprentissage en ligne avec suivi de progression, quiz interactifs et contenus pédagogiques adaptés.</p>
+                        <div class="project-tags">
+                            <span class="tag">Angular</span>
+                            <span class="tag">Firebase</span>
+                            <span class="tag">EdTech</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="/static/img/p3.jpg" alt="CRM Entreprise" class="project-img">
+                    <div class="project-content">
+                        <h3>OUDJAT AI</h3>
+                        <p>Solution de gestion des  presences dans des institutions scloaires et autres institutions professionnelles en utilisant la reconnaissance faciale.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Face Recognition</span>
+                            <span class="tag">AI</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+     <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">Témoignages Clients</h2>
+            <div class="testimonials-container">
+                <div class="slider-arrows">
+                    <div class="arrow arrow-left">❮</div>
+                    <div class="arrow arrow-right">❯</div>
+                </div>
+                <div class="testimonials-slider">
+                    <div class="testimonial">
+                        <img src="/static/img/p6.jpg" alt="Sophie Martin" class="testimonial-img">
+                        <p>"TechVision a complètement transformé notre entreprise avec leur solution digitale. Leur équipe est professionnelle, réactive et a su comprendre nos besoins spécifiques. Je recommande vivement leurs services !"</p>
+                        <h4 class="testimonial-author">Sophie Martin</h4>
+                        <div class="testimonial-role">Directrice Marketing, GlobalTech</div>
+                    </div>
+                    <div class="testimonial">
+                        <img src="/static/img/p1.jpg" alt="Thomas Dubois" class="testimonial-img">
+                        <p>"Notre application mobile développée par TechVision a dépassé toutes nos attentes. Le processus de développement était transparent, et le résultat final est un produit que nos clients adorent utiliser."</p>
+                        <h4 class="testimonial-author">Thomas Dubois</h4>
+                        <div class="testimonial-role">CEO, FinApp</div>
+                    </div>
+                    <div class="testimonial">
+                        <img src="/static/img/p5.jpg" alt="Marie Leroy" class="testimonial-img">
+                        <p>"Nous avons fait appel à TechVision pour refondre notre site e-commerce et optimiser notre processus de vente. Les résultats sont impressionnants : +40% de conversions et une expérience utilisateur nettement améliorée."</p>
+                        <h4 class="testimonial-author">Marie Leroy</h4>
+                        <div class="testimonial-role">Responsable E-commerce, ModeFrance</div>
+                    </div>
+                </div>
+                <div class="slider-controls">
+                    <div class="slider-dot active"></div>
+                    <div class="slider-dot"></div>
+                    <div class="slider-dot"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contactez-nous</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Discutons de votre projet</h3>
+                    <p>Nous sommes à votre écoute pour comprendre vos besoins et vous proposer des solutions adaptées. Contactez-nous dès aujourd'hui pour démarrer votre transformation digitale.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div>
+                                <strong>Adresse</strong>
+                                <p>15 Rue de l'Innovation, 75001 Paris</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+                            <div>
+                                <strong>Téléphone</strong>
+                                <p>+33 1 23 45 67 89</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">✉️</div>
+                            <div>
+                                <strong>Email</strong>
+                                <p>contact@techvision.fr</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <div class="success-message">
+                        Votre message a été envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.
+                    </div>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Nom</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Sujet</label>
+                            <input type="text" id="subject" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        <div class="form-submit">
+                            <button type="submit" class="cta-btn">Envoyer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <div class="logo-icon">TV</div>
+                        TechVision
+                    </div>
+                    <p>Nous créons des solutions digitales innovantes pour transformer votre entreprise et vous aider à atteindre vos objectifs.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">f</a>
+                        <a href="#" class="social-link">in</a>
+                        <a href="#" class="social-link">🐦</a>
+                        <a href="#" class="social-link">📷</a>
+                    </div>
+                </div>
+                <div class="footer-nav">
+                    <h4 class="footer-title">Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Accueil</a></li>
+                        <li><a href="#projects">Nos Réalisations</a></li>
+                        <li><a href="#testimonials">Témoignages</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-services">
+                    <h4 class="footer-title">Nos Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Développement Web</a></li>
+                        <li><a href="#">Applications Mobiles</a></li>
+                        <li><a href="#">Solutions E-commerce</a></li>
+                        <li><a href="#">Conseil Digital</a></li>
+                        <li><a href="#">IoT & Smart Solutions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-legal">
+                    <h4 class="footer-title">Légal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Mentions Légales</a></li>
+                        <li><a href="#">Politique de Confidentialité</a></li>
+                        <li><a href="#">Conditions Générales</a></li>
+                        <li><a href="#">Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 TechVision. Tous droits réservés.
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="{{ url_for('static', filename='js/script.js')}}"></script>
+</body>
+</html>

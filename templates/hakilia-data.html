@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/data.css')}}">
+    <title>Document</title>
+</head>
+<body>
+        <canvas class="background-canvas" id="data-stream-canvas"></canvas>
+
+    <header class="header" id="header">
+        <nav class="navbar container">
+            <a href="#" class="logo">Hakilia<span>Data.</span></a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="hero">
+            <div class="container">
+                <div class="hero-content reveal">
+                    <h1>From Data Chaos to Actionable Clarity.</h1>
+                    <p>We are a data analysis powerhouse, wielding machine learning, deep learning, and statistical modeling to decipher complex data and illuminate the path to intelligent decisions.</p>
+                    <a href="mailto:inquiry@hakiliadata.com" class="btn-primary">Initiate an Inquiry</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="section" id="services">
+            <div class="container">
+                <div class="section-title reveal">
+                    <h2>Our Analytical Services</h2>
+                    <p>We offer a symphony of logic and technology to address your most challenging data problems.</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-module reveal">
+                        <div class="module-icon">🧠</div>
+                        <h3>Machine & Deep Learning</h3>
+                        <p>Building predictive models and neural networks to forecast trends, classify data, and unlock hidden patterns.</p>
+                    </div>
+                    <div class="service-module reveal">
+                        <div class="module-icon">📊</div>
+                        <h3>Statistical Analysis</h3>
+                        <p>Applying rigorous statistical methods for hypothesis testing, market research, and academic inquiries.</p>
+                    </div>
+                    <div class="service-module reveal">
+                        <div class="module-icon">🔍</div>
+                        <h3>Data Inquiry & ETL</h3>
+                        <p>Expert data extraction, transformation, and loading. We turn raw, messy data into a clean, analysis-ready asset.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Stack Section -->
+        <section class="section" id="tech">
+            <div class="container">
+                <div class="section-title reveal">
+                    <h2>Our Toolkit</h2>
+                    <p>We are fluent in the languages and frameworks that power modern data science.</p>
+                </div>
+            </div>
+            <div class="tech-marquee">
+                <div class="tech-marquee-inner">
+                    <!-- Logos repeated for infinite scroll effect -->
+                    <img src="https://www.vectorlogo.zone/logos/python/python-ar21.svg" alt="Python" class="tech-logo">
+                    <img src="https://www.vectorlogo.zone/logos/tensorflow/tensorflow-ar21.svg" alt="TensorFlow" class="tech-logo">
+                    <img src="https://seaborn.pydata.org/_static/logo-wide-lightbg.svg" alt="Seaborn" class="tech-logo" style="filter: invert(1) grayscale(1) brightness(1.5);">
+                    <img src="https://www.r-project.org/logo/Rlogo.svg" alt="R" class="tech-logo" style="height: 40px;">
+                    <img src="https://www.vectorlogo.zone/logos/stata/stata-ar21.svg" alt="Stata" class="tech-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Matlab_Logo.png" alt="Matlab" class="tech-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/SPSS_logo.svg/2560px-SPSS_logo.svg.png" alt="SPSS" class="tech-logo">
+                    
+                    <img src="https://www.vectorlogo.zone/logos/python/python-ar21.svg" alt="Python" class="tech-logo">
+                    <img src="https://www.vectorlogo.zone/logos/tensorflow/tensorflow-ar21.svg" alt="TensorFlow" class="tech-logo">
+                    <img src="https://seaborn.pydata.org/_static/logo-wide-lightbg.svg" alt="Seaborn" class="tech-logo" style="filter: invert(1) grayscale(1) brightness(1.5);">
+                    <img src="https://www.r-project.org/logo/Rlogo.svg" alt="R" class="tech-logo" style="height: 40px;">
+                    <img src="https://www.vectorlogo.zone/logos/stata/stata-ar21.svg" alt="Stata" class="tech-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Matlab_Logo.png" alt="Matlab" class="tech-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/SPSS_logo.svg/500px-SPSS_logo.svg.png" alt="SPSS" class="tech-logo">
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="section cta-section" id="cta">
+            <div class="container reveal">
+                <h2>Unlock Your Data's Potential.</h2>
+                <p>Your data has a story to tell. Let's translate it together. Reach out to begin the process of discovery.</p>
+                <a href="mailto:inquiry@hakiliadata.com" class="btn-primary">Contact Our Analysts</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Hakilia Data Analysis. Precision. Clarity. Insight.</p>
+        </div>
+    </footer>
+    <script src="{{url_for('static', filename='js/data.js')}}"></script>
+</body>
+</html>

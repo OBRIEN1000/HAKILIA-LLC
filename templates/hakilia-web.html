@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/web.css')}}">
+    <title>Document</title>
+</head>
+<body>
+     <canvas class="background-canvas" id="grid-canvas"></canvas>
+
+    <header class="header" id="header">
+        <nav class="navbar container">
+            <a href="#" class="logo">Hakilia WebLab<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="#process">Process</a></li>
+                <li><a href="#showcase">Showcase</a></li>
+                <li><a href="#cta">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>
+                        <div class="line-reveal"><span>AI Precision.</span></div>
+                        <div class="line-reveal"><span>Human</span></div>
+                        <div class="line-reveal"><span>Artistry.</span></div>
+                    </h1>
+                    <p class="subtitle">Hakilia WebLab architects elite websites by synthesizing artificial intelligence with expert human craftsmanship. We don't just build pages, we engineer digital presence.</p>
+                    <a href="#showcase" class="btn">View Our Creations</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section class="section" id="process">
+            <div class="container">
+                <div class="process-grid">
+                    <div class="process-step">
+                        <div class="step-number">01</div>
+                        <h3>AI Blueprint</h3>
+                        <p>We utilize proprietary AI to analyze market data, user behavior, and design trends, generating a data-driven architectural plan for optimal engagement and performance.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">02</div>
+                        <h3>Human Synthesis</h3>
+                        <p>Our expert designers and developers take the AI blueprint and infuse it with creativity, intuition, and brand narrative, transforming cold data into a compelling user experience.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">03</div>
+                        <h3>Dynamic Launch</h3>
+                        <p>The final product is a responsive, high-performance website that not only looks stunning but is intelligently designed to adapt, learn, and grow with your business.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Showcase Section -->
+        <section class="section" id="showcase">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 2rem;">Engineered Experiences</h2>
+            </div>
+            <div class="showcase-container">
+                <div class="showcase-wrapper">
+                    <div class="showcase-card" style="--x: 0; --y: 0;">
+                        <img src="https://images.unsplash.com/photo-1555774698-231a690d41e6?q=80&w=1974&auto=format&fit=crop" alt="Project Cygnus">
+                        <div class="card-content">
+                            <h3>Project Cygnus</h3>
+                            <p>Fintech Platform</p>
+                        </div>
+                    </div>
+                    <div class="showcase-card">
+                        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop" alt="Project Orion">
+                        <div class="card-content">
+                            <h3>Project Orion</h3>
+                            <p>SaaS Landing Page</p>
+                        </div>
+                    </div>
+                    <div class="showcase-card">
+                        <img src="https://images.unsplash.com/photo-1604398195996-80f37a255e84?q=80&w=1974&auto=format&fit=crop" alt="Project Lyra">
+                        <div class="card-content">
+                            <h3>Project Lyra</h3>
+                            <p>E-commerce Experience</p>
+                        </div>
+                    </div>
+                    <div class="showcase-card">
+                        <img src="https://images.unsplash.com/photo-1533134486753-c833f0ed4866?q=80&w=2070&auto=format&fit=crop" alt="Project Vega">
+                        <div class="card-content">
+                            <h3>Project Vega</h3>
+                            <p>Creative Portfolio</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <p class="scroll-prompt">Drag or Scroll to Explore</p>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="section cta-section" id="cta">
+            <div class="container">
+                <h2>Ready to build the future of your brand's digital presence?</h2>
+                <a href="mailto:contact@hakiliaweblab.com" class="btn">Start a Conversation</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Hakilia WebLab. All Rights Reserved.</p>
+        </div>
+    </footer>
+    <script src="{{ url_for('static', filename='js/web.js')}}"></script>
+</body>
+</html>

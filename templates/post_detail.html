@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}{{ post.title }}{% endblock %}
+{% block extra_js %}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('like-btn').addEventListener('click', async () => {
+                const response = await fetch(`/like/{{ post.id }}`);
+                const data = await response.json();
+                document.getElementById('like-count').textContent = data.likes;
+            });
+        });
+    </script>
+{% endblock %}
+{% block content %}
+    <div class="max-w-4xl mx-auto">
+        <a href="{{ url_for('Hakilia_blog') }}" class="text-blue-500 hover:underline mb-6 inline-block"><i class="fas fa-arrow-left"></i> Retour au Blog</a>
+        <article class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-6">
+            <h1 class="text-4xl font-bold mb-4">{{ post.title }}</h1>
+            <div class="flex items-center text-gray-500 dark:text-gray-400 mb-4">
+                <span>Catégorie: {{ post.category.name }}</span> | 
+                <span>Publié le: {{ post.created_at.strftime('%d/%m/%Y') }}</span> | 
+                <span>Vues: {{ post.views }}</span> | 
+                <span>Likes: <span id="like-count">{{ post.likes }}</span> <button id="like-btn" class="text-red-500 hover:text-red-700"><i class="fas fa-heart"></i></button></span>
+            </div>
+            {% if post.media_path %}
+                {% if post.media_path.endswith(('mp4',)) %}
+                    <video controls class="w-full h-64 object-cover rounded-md mb-4">
+                        <source src="{{ url_for('static', filename='img/' + post.media_path) }}" type="video/mp4">
+                    </video>
+                {% else %}
+                    <img src="{{ url_for('static', filename='img/' + post.media_path) }}" alt="{{ post.title }}" class="w-full h-64 object-cover rounded-md mb-4">
+                {% endif %}
+            {% endif %}
+            <div class="prose dark:prose-invert">{{ post.content|safe }}</div>
+        </article>
+        <section class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-semibold mb-4">Commentaires ({{ comments|length }})</h2>
+            <form action="{{ url_for('post_detail', post_id=post.id) }}" method="POST" class="mb-6 space-y-4">
+                {{ form.csrf_token }}
+                <div>
+                    {{ form.content.label(class="block text-sm font-medium mb-1") }}
+                    {{ form.content(class="w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600", rows=3) }}
+                </div>
+                <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition">Poster un commentaire</button>
+            </form>
+            <ul class="space-y-4">
+                {% for comment in comments %}
+                    <li class="border-b dark:border-gray-700 pb-2">
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">Posté le {{ comment.created_at.strftime('%d/%m/%Y à %H:%M') }}</p>
+                        <p class="text-lg">{{ comment.content }}</p>
+                        {% if current_user.is_authenticated %}
+                            <a href="{{ url_for('delete_comment', comment_id=comment.id) }}" class="text-red-500 hover:underline text-sm" onclick="return confirm('Êtes-vous sûr ?')">Supprimer</a>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+    </div>
+    <script>
+        document.addEventListene('DOMContentLoaded', () => {
+            const likeBtn =document.getElementById(like-btn);
+            const likeCount = document.getElementById(like-count);
+
+            if (likeBtn && likeCount){
+                likeBtn.addEventListener('click', async () =>{
+                    try{
+                        const res = await fetch("{{url_for('like_post', post_id=post.id) }}");
+                        const data = await res.json();
+                        likeCount.textContent= data.likes;
+                    } catch (e){
+                        console.error('Erreur lors du like:', e);
+                    }
+                });
+            }
+        });
+    </script>
+
+{% endblock %}

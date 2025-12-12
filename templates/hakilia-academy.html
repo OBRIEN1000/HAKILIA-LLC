@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/academ.css')}}">
+    <title>Document</title>
+</head>
+<body>
+    <canvas class="background-canvas" id="constellation-canvas"></canvas>
+
+    <header class="header" id="header">
+        <nav class="navbar container">
+            <a href="#hero" class="logo">Hakilia<span>.</span>Academy</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="fade-in">Master The Code.</h1>
+                    <p class="subtitle fade-in" style="transition-delay: 0.2s;">Unlock your potential with elite, hands-on training in the most in-demand technologies of today and tomorrow.</p>
+                    <a href="#disciplines" class="btn-cta fade-in" style="transition-delay: 0.4s;">Explore Disciplines</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Disciplines Section -->
+        <section class="section" id="disciplines">
+            <div class="container">
+                <div class="section-title fade-in">
+                    <h2>Core Disciplines</h2>
+                    <p>Four pillars of knowledge. Each a gateway to a universe of career opportunities. Choose your path.</p>
+                </div>
+                <div class="disciplines-grid">
+                    <a href="#cs" class="discipline-card fade-in" style="text-decoration: none; color: inherit;">
+                        <div class="card-icon">💻</div>
+                        <h3>Computer Science</h3>
+                        <p>Master the art of software creation for web, mobile, and desktop platforms.</p>
+                    </a>
+                    <a href="#data" class="discipline-card fade-in" style="transition-delay: 0.1s; text-decoration: none; color: inherit;">
+                        <div class="card-icon">📊</div>
+                        <h3>Data Science & AI</h3>
+                        <p>Learn to extract insights, build predictive models, and create intelligent systems.</p>
+                    </a>
+                    <a href="#video" class="discipline-card fade-in" style="transition-delay: 0.2s; text-decoration: none; color: inherit;">
+                        <div class="card-icon">🎬</div>
+                        <h3>Video & Motion Graphics</h3>
+                        <p>Craft compelling visual stories with industry-standard editing and effects software.</p>
+                    </a>
+                    <a href="#cyber" class="discipline-card fade-in" style="transition-delay: 0.3s; text-decoration: none; color: inherit;">
+                        <div class="card-icon">🛡️</div>
+                        <h3>Cyber Security</h3>
+                        <p>Become a digital guardian. Learn to defend networks and protect critical data.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Course Details -->
+        <div id="course-details">
+            <section class="course-section" id="cs">
+                <div class="container fade-in">
+                    <h2>Computer Science</h2>
+                    <p>The architecture of the digital world. Learn to build robust and scalable software from the ground up.</p>
+                    
+                    <div class="course-category">
+                        <h4>Web Programming</h4>
+                        <ul class="tech-list">
+                            <li>HTML5</li>
+                            <li>CSS3 & Flexbox/Grid</li>
+                            <li>JavaScript (ES6+)</li>
+                            <li>React.js</li>
+                            <li>Node.js & Express</li>
+                            <li>SQL & NoSQL Databases</li>
+                        </ul>
+                    </div>
+                    <div class="course-category">
+                        <h4>Mobile Programming</h4>
+                        <ul class="tech-list">
+                            <li>React Native</li>
+                            <li>Flutter & Dart</li>
+                            <li>Swift (iOS)</li>
+                            <li>Kotlin (Android)</li>
+                        </ul>
+                    </div>
+                    <div class="course-category">
+                        <h4>Desktop Programming</h4>
+                        <ul class="tech-list">
+                            <li>Python (Tkinter, PyQt)</li>
+                            <li>Electron.js</li>
+                            <li>C# (.NET)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="course-section" id="data" style="background-color: var(--surface-color); backdrop-filter: blur(5px);">
+                <div class="container fade-in">
+                    <h2>Data Science & AI</h2>
+                    <p>Turn raw data into strategic assets. Master the tools that are defining the future of business and technology.</p>
+                    
+                    <div class="course-category">
+                        <h4>Core Curriculum</h4>
+                        <ul class="tech-list">
+                            <li>Data Analysis with Python</li>
+                            <li>Machine Learning Models</li>
+                            <li>Deep Learning & Neural Networks</li>
+                            <li>Data Visualization</li>
+                            <li>Big Data Technologies</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="course-section" id="video">
+                <div class="container fade-in">
+                    <h2>Video & Motion Graphics</h2>
+                    <p>Visual storytelling is the most powerful medium. Learn to cut, color, and create stunning visual narratives.</p>
+                    
+                    <div class="course-category">
+                        <h4>Software Mastery</h4>
+                        <ul class="tech-list">
+                            <li>Adobe Premiere Pro</li>
+                            <li>Adobe After Effects</li>
+                            <li>Adobe Photoshop for Video</li>
+                            <li>DaVinci Resolve</li>
+                            <li>Final Cut Pro</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="course-section" id="cyber" style="background-color: var(--surface-color); backdrop-filter: blur(5px);">
+                <div class="container fade-in">
+                    <h2>Cyber Security</h2>
+                    <p>In a world run on data, its protection is paramount. Learn offensive and defensive techniques to secure digital assets.</p>
+                    
+                    <div class="course-category">
+                        <h4>Specializations</h4>
+                        <ul class="tech-list">
+                            <li>Ethical Hacking & Pen Testing</li>
+                            <li>Network Security</li>
+                            <li>Cryptography</li>
+                            <li>Digital Forensics</li>
+                            <li>Cloud Security</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <script src="{{ url_for('static', filename='js/academ.js')}}"></script>
+</body>
+</html>

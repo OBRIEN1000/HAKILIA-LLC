@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/studio.css')}}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <header class="header" id="header">
+        <nav class="navbar container">
+            <a href="#" class="logo">Hakilia Studio<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="#process" class="interactive">Process</a></li>
+                <li><a href="#creations" class="interactive">Creations</a></li>
+                <li><a href="#cta" class="interactive">Collaborate</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="hero">
+            <canvas id="hero-canvas"></canvas>
+            <div class="hero-content reveal">
+                <h1>The Future of Content. <br>AI-Powered.</h1>
+                <p>We merge human creativity with artificial intelligence to build groundbreaking films, marketing, and multimedia experiences.</p>
+                <a href="#process" class="btn interactive">Explore the Process</a>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section class="section" id="process">
+            <div class="container">
+                <div class="section-title reveal">
+                    <h2>Our AI-Integrated Workflow</h2>
+                    <p>We don't just use AI, we partner with it. Our three-stage process ensures innovation at every step.</p>
+                </div>
+                <div class="process-grid">
+                    <div class="process-node reveal interactive">
+                        <div class="node-icon">01</div>
+                        <h3>AI Ideation & Strategy</h3>
+                        <p>Leveraging generative models to discover unique concepts, narratives, and visual styles that defy convention.</p>
+                    </div>
+                    <div class="process-node reveal interactive">
+                        <div class="node-icon">02</div>
+                        <h3>AI-Assisted Production</h3>
+                        <p>Utilizing AI tools for asset creation, visual effects, and intelligent editing to bring ideas to life with unparalleled speed and quality.</p>
+                    </div>
+                    <div class="process-node reveal interactive">
+                        <div class="node-icon">03</div>
+                        <h3>AI-Powered Optimization</h3>
+                        <p>Employing machine learning to analyze audience engagement and optimize content for maximum impact and reach.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Creations Section -->
+        <section class="section" id="creations">
+            <div class="container">
+                <div class="section-title reveal">
+                    <h2>AI-Generated Realities</h2>
+                    <p>Explore a selection of our projects where technology and artistry converge.</p>
+                </div>
+                <div class="creations-grid">
+                    <div class="creation-item reveal interactive">
+                        <img src="https://images.unsplash.com/photo-1679403769144-2a03a739c812?q=80&w=1964&auto=format&fit=crop" alt="Project 1">
+                        <div class="creation-overlay">
+                            <h3>Project Chimera</h3>
+                            <p>AI Short Film</p>
+                        </div>
+                    </div>
+                    <div class="creation-item reveal interactive">
+                        <img src="https://images.unsplash.com/photo-1677442135749-5348b0563cf8?q=80&w=1974&auto=format&fit=crop" alt="Project 2">
+                        <div class="creation-overlay">
+                            <h3>Aura Marketing</h3>
+                            <p>Generative Ad Campaign</p>
+                        </div>
+                    </div>
+                    <div class="creation-item reveal interactive">
+                        <img src="https://images.unsplash.com/photo-1677741200078-805e4853a5f2?q=80&w=1974&auto=format&fit=crop" alt="Project 3">
+                        <div class="creation-overlay">
+                            <h3>Echoes VR</h3>
+                            <p>Interactive Experience</p>
+                        </div>
+                    </div>
+                    <div class="creation-item reveal interactive">
+                        <img src="https://images.unsplash.com/photo-1665789318391-bcfb495370b8?q=80&w=1974&auto=format&fit=crop" alt="Project 4">
+                        <div class="creation-overlay">
+                            <h3>Synthwave Album Art</h3>
+                            <p>AI Visual Identity</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CTA Section -->
+        <section class="cta-section" id="cta">
+            <div class="container reveal">
+                <h2>Have a project that defies definition?</h2>
+                <a href="mailto:hello@hakiliastudio.com" class="btn cta-btn interactive">Let's Build The Future</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Hakilia Studio // Where Creativity Meets Computation</p>
+        </div>
+    </footer>
+ <script src="{{ url_for('static', filename='js/studio.js')}}"></script>
+</body>
+</html>

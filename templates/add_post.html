@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block title %}Ajouter un article{% endblock %}
+
+{% block extra_css %}
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<header class="bg-blue-600 text-white p-6 rounded-lg shadow-lg mb-6">
+    <h1 class="text-3xl font-bold">Ajouter un article</h1>
+    <a href="{{ url_for('dashboard') }}" class="inline-block mt-4 bg-white text-blue-600 px-4 py-2 rounded hover:bg-gray-100">← Retour</a>
+</header>
+
+<div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md max-w-2xl mx-auto">
+    <form action="{{ url_for('add_post') }}" method="POST" enctype="multipart/form-data" class="space-y-6" id="add-form">
+        {{ form.csrf_token }}
+
+        <!-- Titre -->
+        <div>
+            {{ form.title.label(class="block text-sm font-semibold mb-1") }}
+            {{ form.title(class="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600") }}
+        </div>
+
+        <!-- Contenu (Quill + input caché) -->
+        <div>
+            <label for="editor" class="block text-sm font-semibold mb-1">Contenu</label>
+            <div id="editor" class="bg-white dark:bg-gray-700 h-64 rounded border dark:border-gray-600 p-2 overflow-y-auto">
+                {{ form.content.data or '' }}
+            </div>
+            <input type="hidden" name="content" id="content">
+        </div>
+
+        <!-- Catégorie -->
+        <div>
+            {{ form.category.label(class="block text-sm font-semibold mb-1") }}
+            {{ form.category(class="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600") }}
+        </div>
+
+        <!-- Média -->
+        <div>
+            {{ form.media.label(class="block text-sm font-semibold mb-1") }}
+            {{ form.media(class="w-full p-2 border rounded") }}
+        </div>
+
+        <!-- Publié -->
+        <div>
+            {{ form.published.label(class="inline-block mr-2 text-sm font-medium") }}
+            {{ form.published() }}
+        </div>
+
+        <!-- Bouton -->
+        <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition">
+            {{ form.submit.label.text or 'Publier' }}
+        </button>
+    </form>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const quill = new Quill('#editor', {
+            theme: 'snow',
+            placeholder: 'Écris ici ton article...',
+            modules: {
+                toolbar: [
+                    ['bold', 'italic', 'underline', 'strike'],
+                    [{ 'header': 1 }, { 'header': 2 }],
+                    [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                    [{ 'color': [] }, { 'background': [] }],
+                    [{ 'align': [] }],
+                    ['link', 'image'],
+                    ['clean']
+                ]
+            }
+        });
+
+        const form = document.querySelector('#add-form');
+        const contentInput = document.querySelector('#content');
+
+        if (form && contentInput) {
+            form.addEventListener('submit', () => {
+                const html = quill.root.innerHTML;
+                console.log('Contenu à soumettre :', html);  // 🧪 Pour debug
+                contentInput.value = html;
+            });
+        } else {
+            console.warn("Formulaire ou champ #content introuvable !");
+        }
+    });
+</script>
+{% endblock %}
